@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <script type="text/javascript"
+            th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <link
+            th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}"
+            rel="stylesheet"/>
+</head>
+<body>
+
+<div>
+    <img th:src="${session.userLogin.avatar}" width="200px" height="200px" style="float: left"/>
+</div>
+
+<div>
+    <h3 th:text="${session.userLogin.nickname}"></h3>
+    <div>
+        步数：<p th:text="${session.steps.stepNumbers}"></p>
+    </div>
+</div>
+
+<div style="width: 300px">
+    <table class="table table-hover table-condensed">
+        <legend>
+            <strong>每日步数排行榜</strong>
+        </legend>
+        <thead>
+        <tr>
+            <th>账号</th>
+            <th>步数</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sport : ${session.ranking}">
+            <td th:text="${sport.account}"></td>
+            <td th:text="${sport.stepNumbers}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
